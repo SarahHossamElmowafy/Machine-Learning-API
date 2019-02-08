@@ -1,0 +1,64 @@
+{% extends "material/base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>preview</title>
+    <link rel="stylesheet" type="text/css" href="style.css">.
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <div class="jumbotron">
+      <div class="well">
+        <center><h3>Retrain the model, predict the value and show the confusion matrix also</h3></center></div>
+      <a href="/simple" id = "name-button" class="btn btn-lg btn-info btn-block" role="button">Train</a>
+      <div class="well">
+      <form class="form-group row" action="{{ url_for('analyze')}}" method="POST">
+        <div class= "col-xs-3">
+        <select id="gender" name="gender" class="dropdown divider">
+            <option value="" disabled selected>gender</option>
+            <option value="0">Male</option>
+            <option value="1">Female</option>
+        </select>
+      </div>
+      <div class= "col-xs-3">
+      <select id="InternetService" name="InternetService" class="dropdown divider">
+          <option value="" disabled selected>Internet Service </option>
+          <option value="0">DSL</option>
+          <option value="1">Fiber Optic</option>
+          <option value="2">No</option>
+      </select>
+      <select id="PhoneService" name="PhoneService" class="dropdown divider">
+          <option value="" disabled selected>Phone Service</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+      </select>
+
+    </div>
+        <div class="col-xs-4">
+          <h4>Total Charges : </h4>
+          <input class="form-control" id="total" type="text" name="total">
+        </div>
+        <div class="col-xs-4">
+          <h4>Monthly Charges : </h4>
+          <input class="form-control" id="month" type="text" name="month">
+        </div>
+        <div class="col-xs-4">
+          <h4>Tenure : </h4>
+          <input class="form-control" id="tenure" type="text" name="tenure">
+        </div>
+     </form>
+   </div>
+
+   <input type="submit" value="Predict" class="btn btn-lg btn-info btn-block waves-effect waves-light btn-extend">
+      <p id="predicted"></p>
+        <p>{{ result_prediction }}</p>
+   <input type="submit" value="Confusion Matrix" class="btn btn-lg btn-info btn-block waves-effect waves-light btn-extend">
+      <p id= "con_mat"></p>
+  </div>
+
+  </body>
+</html>
+{% endblock%}
